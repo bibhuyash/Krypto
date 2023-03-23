@@ -23,22 +23,38 @@ contract Transactions {
 
     TransferStruct[] transactions;
 
-    function addToBlockchain(address payable _receiver, uint256 _amount, string memory _message, string memory _keyword) public {
-        transactionCount+=1;
-        transactions.push(TransferStruct(msg.sender, _receiver, _amount, _message, block.timestamp, _keyword));
-        emit Transfer(msg.sender, _receiver, _amount, _message, block.timestamp, _keyword);
-
+    function addToBlockchain(
+        address payable _receiver,
+        uint256 _amount,
+        string memory _message,
+        string memory _keyword
+    ) public {
+        transactionCount += 1;
+        transactions.push(
+            TransferStruct(
+                msg.sender,
+                _receiver,
+                _amount,
+                _message,
+                block.timestamp,
+                _keyword
+            )
+        );
+        emit Transfer(
+            msg.sender,
+            _receiver,
+            _amount,
+            _message,
+            block.timestamp,
+            _keyword
+        );
     }
 
-    function getAllTransaction() public view returns(TransferStruct[] memory) {
+    function getAllTransaction() public view returns (TransferStruct[] memory) {
         return transactions;
-
     }
 
-    function getTransactionCount() public view returns(uint256) {
+    function getTransactionCount() public view returns (uint256) {
         return transactionCount;
-
     }
-
-    
 }
